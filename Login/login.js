@@ -30,5 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errorMessage.style.display = "none";
       }, 3000); // dispare după 3 secunde
     }
+    
   });
   
