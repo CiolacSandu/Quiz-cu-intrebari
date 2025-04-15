@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       if (username === "admin" && password === "parola123") {
         errorMessage.textContent = "";
-        window.location.href = "index.html";
+        window.location.href = "../Dashboard/dash.html";
       } else {
         showError("Username sau parolă incorectă!");
       }
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         errorMessage.textContent = "";
         errorMessage.style.display = "none";
-      }, 3000); // dispare după 3 secunde
+      }, 3000); 
     }
     
   });
