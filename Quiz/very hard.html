@@ -1,24 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Quiz</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Quiz - Very Hard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #dbeafe, #60a5fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .quiz-title {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .question-box h2 {
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .options button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      background-color: #eff6ff;
+      color: #1e40af;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #dbeafe;
+      transform: scale(1.05);
+    }
+
+    #nextBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+      background-color: #2563eb;
+    }
+
+    .score {
+      font-size: 24px;
+      color: #111827;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <button class="logout-btn">Log Out</button>
+  <div class="quiz-container">
+    <h1 class="quiz-title">Simple Quiz - Very Hard</h1>
+    <div class="question-box">
+      <h2 id="question">Loading question...</h2>
+      <div class="options" id="options"></div>
     </div>
+    <button id="nextBtn">Next</button>
+    <div class="score" id="score"></div>
+  </div>
 
-    <div class="container">
-        <h1>Easy Quiz</h1>
-        <div id="quiz-container">
-           
-        </div>
-        <button class="next-btn" style="display:none;">Next Question</button>
-    </div>
+  <script>
+    const questions = [
+      {
+        question: "Which physicist developed the uncertainty principle in quantum mechanics?",
+        options: ["Niels Bohr", "Werner Heisenberg", "Max Planck", "Erwin Schrodinger"],
+        answer: "Werner Heisenberh"
+      },
+      {
+        question: "Which Shakespeare play features the characters Rosencrantz and Guildenstern?",
+        options: ["Macbeth", "Othello", "Hamlet", "King Lear"],
+        answer: "Hamlet"
+      },
+      {
+        question: "What element has the highest melting point?",
+        options: ["Iron", "Tungsten", "Platinum", "Titanium"],
+        answer: "Tungsten"
+      },
+      {
+        question: "Who was the first woman to win a Nobel Prize?",
+        options: ["Ada Lovelace", "Marie Curie", "Rosalind Franklin", "Jane Godall"],
+        answer: "Marie Curie"
+      },
+      {
+        question: "Which language is the most widely spoken native language in the world?",
+        options: ["English", "Mandarin Chinese", "Spanish", "Hindi"],
+        answer: "Mandarin Chinese"
+      },
+      {
+        question: "Which artist is known for cutting off part of his own ear?",
+        options: ["Pablo Picasso", "Claude Monet", "Leonardo da Vinci", "Vincent van Gogh"],
+        answer: "Vincent van Gogh"
+      },
+      {
+        question: "What is the unit of measurement for electric resistance?",
+        options: ["Volt", " Watt", "Ohm", "Ampere"],
+        answer: "Ohm"
+      },
+      {
+        question: "What is the main language spoken in Iran?",
+        options: ["Arabic", "Persian (Farsi)", "Turkish", "Urdu"],
+        answer: "Persian (Farsi)"
+      },
+      {
+        question: "What programming paradigm is based on formal logic and includes languages like Prolog?",
+        options: ["Functional", "Logic", "Procedural", "Object-oriented"],
+        answer: "Logic"
+      },
+      {
+        question: "In computing, what does the acronym 'FIFO' stand for?",
+        options: [" First-In-First-Open", "First-In-First-Out", "Fast Input Fast Output", "Fixed Instruction Fixed Output"],
+        answer: "First-In-First-Out"
+      }
+    ];
 
-    <script src="js/very hard.js"></script> 
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById("question").textContent = q.question;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (opt === q.answer) {
+            score++;
+            btn.style.backgroundColor = "#4ade80"; 
+          } else {
+            btn.style.backgroundColor = "#f87171"; 
+          }
+
+          
+          document.querySelectorAll('.options button').forEach(b => b.disabled = true);
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
+        document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    });
+
+    showQuestion();
+  </script>
 </body>
 </html>
