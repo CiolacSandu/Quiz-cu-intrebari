@@ -1,24 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Quiz</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Quiz - Hard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #dbeafe, #60a5fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .quiz-title {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .question-box h2 {
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .options button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      background-color: #eff6ff;
+      color: #1e40af;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #dbeafe;
+      transform: scale(1.05);
+    }
+
+    #nextBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+      background-color: #2563eb;
+    }
+
+    .score {
+      font-size: 24px;
+      color: #111827;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <button class="logout-btn">Log Out</button>
+  <div class="quiz-container">
+    <h1 class="quiz-title">Simple Quiz - Hard</h1>
+    <div class="question-box">
+      <h2 id="question">Loading question...</h2>
+      <div class="options" id="options"></div>
     </div>
+    <button id="nextBtn">Next</button>
+    <div class="score" id="score"></div>
+  </div>
 
-    <div class="container">
-        <h1>Easy Quiz</h1>
-        <div id="quiz-container">
-           
-        </div>
-        <button class="next-btn" style="display:none;">Next Question</button>
-    </div>
+  <script>
+    const questions = [
+      {
+        question: "Which country has the largest population in the world (as of 2024)?",
+        options: ["United States", "India", "China", "Brazil"],
+        answer: "India"
+      },
+      {
+        question: "What is the chemical formula for table salt?",
+        options: ["NaCl₂", "KCl", "NaCl", "HCl"],
+        answer: "NaCl"
+      },
+      {
+        question: "Who painted The Starry Night?",
+        options: ["Claude Monet", "Pablo Picasso", "Vincent van Gogh", "Salvador Dalí"],
+        answer: "Vincent van Gogh"
+      },
+      {
+        question: "What is the square root of 256",
+        options: [" 12", "20", "16", "18"],
+        answer: "16"
+      },
+      {
+        question: "In which year did the Titanic sink?",
+        options: ["1905", "1921", "1915", "1912"],
+        answer: "1912"
+      },
+      {
+        question: "What is the longest bone in the human body?",
+        options: ["Tibia", "Spine", "Humerus", "Femur"],
+        answer: "Femur"
+      },
+      {
+        question: "Who discovered penicillin?",
+        options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Albert Einstein"],
+        answer: "Alexander Fleming"
+      },
+      {
+        question: "What’s the capital city of Australia?",
+        options: ["Sydney", "Melbourne", "Brisbane", "Canberra"],
+        answer: "Canberra"
+      },
+      {
+        question: "What is the main gas found in the Earth's atmosphere?",
+        options: ["Oxygen", "Nitrogen", "Hydrogen", "Carbon dioxide"],
+        answer: "Nitrogen"
+      },
+      {
+        question: "Which famous scientist developed the three laws of motion?",
+        options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", " Johannes Kepler"],
+        answer: "Isaac Newton"
+      }
+    ];
 
-    <script src="js/hard.js"></script> 
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById("question").textContent = q.question;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (opt === q.answer) {
+            score++;
+            btn.style.backgroundColor = "#4ade80"; 
+          } else {
+            btn.style.backgroundColor = "#f87171"; 
+          }
+
+          
+          document.querySelectorAll('.options button').forEach(b => b.disabled = true);
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
+        document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    });
+
+    showQuestion();
+  </script>
 </body>
 </html>
+
+
