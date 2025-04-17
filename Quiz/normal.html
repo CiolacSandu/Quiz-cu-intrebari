@@ -89,6 +89,7 @@
       cursor: pointer;
       transition: 0.3s;
       margin-top: 20px;
+      display: none;
     }
 
     #dashboardBtn:hover {
@@ -111,7 +112,7 @@
     </div>
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
-    <button id="dashboardBtn" style="display: none;">Back to Dashboard</button>
+    <button id="dashboardBtn">Back to Dashboard</button>
   </div>
 
   <script>
@@ -122,9 +123,9 @@
         answer: "Pacific Ocean"
       },
       {
-        question: "What color is the sky?",
-        options: ["Green", "Blue", "Red", "Black"],
-        answer: "Blue"
+        question: "What is the synonym of the word 'happy'?",
+        options: ["Sad", "Joyful", "Angry", "Bored"],
+        answer: "Joyful"
       },
       {
         question: "Which planet is known as the Red Planet?",
@@ -211,7 +212,7 @@
     });
 
     document.getElementById("dashboardBtn").addEventListener("click", () => {
-      window.location.href = "dashboard.html";
+      window.location.href = "../Dashboard/dash.html";
     });
 
     showQuestion();

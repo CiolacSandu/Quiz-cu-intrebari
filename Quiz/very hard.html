@@ -84,6 +84,23 @@
       font-size: 18px;
       margin-top: 20px;
     }
+
+    #backToDashboardBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #backToDashboardBtn:hover {
+      background-color: #2563eb;
+    }
   </style>
 </head>
 <body>
@@ -96,6 +113,7 @@
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
     <div id="correctAnswerMessage"></div>
+    <button id="backToDashboardBtn">Back to Dashboard</button>
   </div>
 
   <script>
@@ -194,9 +212,14 @@
         document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
         document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
         document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("backToDashboardBtn").style.display = "inline-block";
       }
     });
 
+    document.getElementById("backToDashboardBtn").addEventListener("click", () => {
+      window.location.href = "../Dashboard/dash.html";  
+    });
+    
     showQuestion();
   </script>
 </body>

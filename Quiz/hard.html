@@ -89,7 +89,7 @@
       cursor: pointer;
       transition: 0.3s;
       margin-top: 20px;
-      display: none; 
+      display: none;
     }
 
     #dashboardBtn:hover {
@@ -179,7 +179,7 @@
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
 
-      document.getElementById("correctAnswer").style.display = "none"; // Reset the correct answer display
+      document.getElementById("correctAnswer").style.display = "none";
 
       q.options.forEach(opt => {
         const btn = document.createElement("button");
@@ -187,9 +187,9 @@
         btn.onclick = () => {
           if (opt === q.answer) {
             score++;
-            btn.style.backgroundColor = "#4ade80"; 
+            btn.style.backgroundColor = "#4ade80";
           } else {
-            btn.style.backgroundColor = "#f87171"; 
+            btn.style.backgroundColor = "#f87171";
             document.getElementById("correctAnswer").style.display = "block";
             document.getElementById("correctAnswer").textContent = `Correct Answer: ${q.answer}`;
           }
@@ -206,13 +206,13 @@
       } else {
         document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
         document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
-        document.getElementById("nextBtn").style.display = "none"; 
+        document.getElementById("nextBtn").style.display = "none";
         document.getElementById("dashboardBtn").style.display = "inline-block";
       }
     });
 
     document.getElementById("dashboardBtn").addEventListener("click", () => {
-      window.location.href = "dashboard.html"; 
+      window.location.href = "../Dashboard/dash.html";
     });
 
     showQuestion();
