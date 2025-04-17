@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Difficulty Selection</title>
-    <link rel="stylesheet" href="dash.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Quiz - Dashboard</title>
+  <link rel="stylesheet" href="dash.css" />
+  <link rel="stylesheet" href="../Navbar/nav.css" />
 </head>
 <body>
-    <div class="navbar">
-        <button class="logout-btn">Log Out</button>
-    </div>
 
-    <div class="container">
-        <h1>Select Your Quiz Difficulty</h1>
-        <div class="difficulty-options">
-            <button class="difficulty-btn" id="easy">Easy</button>
-            <button class="difficulty-btn" id="normal">Normal</button>
-            <button class="difficulty-btn" id="hard">Hard</button>
-            <button class="difficulty-btn" id="very-hard">Very Hard</button>
-        </div>
-        <div class="result">
-            <p id="selected-difficulty">Selected Difficulty: <span>None</span></p>
-        </div>
-    </div>
+  
+  <div id="navbar-placeholder"></div>
 
-    <script src="dash.js"></script>
+  
+  <div class="container">
+    <h1 class="title">Simple Quiz</h1>
+    <p class="subtitle">Choose your quiz difficulty</p>
+    
+    <div class="difficulty-options">
+      <button class="difficulty-btn" id="easy">🟢 Easy</button>
+      <button class="difficulty-btn" id="normal">🟡 Normal</button>
+      <button class="difficulty-btn" id="hard">🟠 Hard</button>
+      <button class="difficulty-btn" id="very-hard">🔴 Very Hard</button>
+    </div>
+  </div>
+
+  
+  <footer>
+    <p>© 2025 Simple Quiz. All rights reserved.</p>
+  </footer>
+
+  <script src="../Navbar/nav.js"></script>
+  <script>
+    fetch("../Navbar/nav.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+      });
+  </script>
+
+  <script src="dash.js"></script>
 </body>
 </html>

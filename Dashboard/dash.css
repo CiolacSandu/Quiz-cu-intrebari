@@ -1,99 +1,133 @@
-/* General page styling */
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #E5F3FE;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
     height: 100vh;
-    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
-    color: white;
-    overflow: hidden;
-}
-
-/* Navigation bar */
-.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-x: hidden; 
+  }
+  
+  #navbar-placeholder {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 15px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.logout-btn {
-    padding: 10px 20px;
-    background-color: #FF6347;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logout-btn:hover {
-    background-color: #FF4500;
-}
-
-/* Main container */
-.container {
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-    margin-top: 70px;
-}
-
-/* Title styling */
-h1 {
-    font-size: 36px;
+    padding: 80px 20px;
+    margin-top: 80px;
     color: #333;
-    margin-top: 30px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     font-weight: bold;
-}
-
-/* Difficulty buttons */
-.difficulty-options {
+    background-color: #A7C6ED; 
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 160px); 
+    overflow: hidden; 
+  }
+  
+  .title {
+    font-size: 48px;
+    color: #1E3A8A; 
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .subtitle {
+    font-size: 24px;
+    color: #4B5563; 
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+  
+  .difficulty-options {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
-}
-
-.difficulty-btn {
-    padding: 18px 28px;
-    font-size: 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-    background-color: #4CAF50;
-    color: white;
-}
-
-.difficulty-btn:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
-}
-
-/* Result text */
-.result {
-    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .difficulty-btn {
+    padding: 20px 40px;
     font-size: 22px;
-    color: #333;
-}
-
-span {
-    font-weight: bold;
-    color: #FF6347;
-}
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #3B82F6; 
+    color: white;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+  }
+  
+  .difficulty-btn:hover {
+    background-color: #2563EB; 
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .difficulty-btn:active {
+    transform: translateY(2px);
+  }
+  
+  footer {
+    background-color: #1E3A8A; 
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  footer::after {
+    content: "Sarcina practică a fost realizata de elevul grupei PTPP-241 din Colegiul Universității Tehnice a Moldovei";
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #B0C4DE; 
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .difficulty-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .difficulty-btn {
+      width: 90%;
+      max-width: 300px;
+      font-size: 20px;
+    }
+  
+    .title {
+      font-size: 36px;
+    }
+  
+    .subtitle {
+      font-size: 20px;
+    }
+  }
+  
