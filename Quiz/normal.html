@@ -1,24 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Quiz</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Quiz - Normal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #dbeafe, #60a5fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .quiz-title {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .question-box h2 {
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .options button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      background-color: #eff6ff;
+      color: #1e40af;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #dbeafe;
+      transform: scale(1.05);
+    }
+
+    #nextBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+      background-color: #2563eb;
+    }
+
+    .score {
+      font-size: 24px;
+      color: #111827;
+      margin-top: 30px;
+    }
+
+    #dashboardBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+
+    #dashboardBtn:hover {
+      background-color: #2563eb;
+    }
+
+    .correct-answer {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <button class="logout-btn">Log Out</button>
+  <div class="quiz-container">
+    <h1 class="quiz-title">Simple Quiz - Normal</h1>
+    <div class="question-box">
+      <h2 id="question">Loading question...</h2>
+      <div class="options" id="options"></div>
+      <p id="correctAnswer" class="correct-answer" style="display: none;"></p>
     </div>
+    <button id="nextBtn">Next</button>
+    <div class="score" id="score"></div>
+    <button id="dashboardBtn" style="display: none;">Back to Dashboard</button>
+  </div>
 
-    <div class="container">
-        <h1>Easy Quiz</h1>
-        <div id="quiz-container">
-            
-        </div>
-        <button class="next-btn" style="display:none;">Next Question</button>
-    </div>
+  <script>
+    const questions = [
+      {
+        question: "What is the largest ocean on Earth?",
+        options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+        answer: "Pacific Ocean"
+      },
+      {
+        question: "What color is the sky?",
+        options: ["Green", "Blue", "Red", "Black"],
+        answer: "Blue"
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Venus"],
+        answer: "Mars"
+      },
+      {
+        question: "How many legs does a spider have?",
+        options: ["6", "8", "10", "12"],
+        answer: "8"
+      },
+      {
+        question: "Who painted the Mona Lisa?",
+        options: ["Vincent Van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"],
+        answer: "Leonardo da Vinci"
+      },
+      {
+        question: "What is the capital of Italy?",
+        options: ["Milan", "Rome", "Venice", "Florence"],
+        answer: "Rome"
+      },
+      {
+        question: "Which language is primarily spoken in Spain?",
+        options: ["French", "German", "Spanish", "Italian"],
+        answer: "Spanish"
+      },
+      {
+        question: "Which gas do plants use for photosynthesis?",
+        options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+        answer: "Carbon Dioxide"
+      },
+      {
+        question: "What is the square root of 64?",
+        options: ["6", "7", "8", "9"],
+        answer: "8"
+      },
+      {
+        question: "Who is the author of 'Harry Potter'?",
+        options: ["J.R.R. Tolkien", "J.K. Rowling", "Stephen King", "Suzanne Collins"],
+        answer: "J.K. Rowling"
+      }
+    ];
 
-    <script src="js/normal.js"></script> 
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById("question").textContent = q.question;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      document.getElementById("correctAnswer").style.display = "none";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (opt === q.answer) {
+            score++;
+            btn.style.backgroundColor = "#4ade80";
+          } else {
+            btn.style.backgroundColor = "#f87171";
+            document.getElementById("correctAnswer").style.display = "block";
+            document.getElementById("correctAnswer").textContent = `Correct Answer: ${q.answer}`;
+          }
+          document.querySelectorAll('.options button').forEach(b => b.disabled = true);
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
+        document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("dashboardBtn").style.display = "inline-block";
+      }
+    });
+
+    document.getElementById("dashboardBtn").addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+    showQuestion();
+  </script>
 </body>
 </html>

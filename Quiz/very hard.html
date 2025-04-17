@@ -78,6 +78,12 @@
       color: #111827;
       margin-top: 30px;
     }
+
+    .correct-answer {
+      color: #4ade80;
+      font-size: 18px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -89,6 +95,7 @@
     </div>
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
+    <div id="correctAnswerMessage"></div>
   </div>
 
   <script>
@@ -96,7 +103,7 @@
       {
         question: "Which physicist developed the uncertainty principle in quantum mechanics?",
         options: ["Niels Bohr", "Werner Heisenberg", "Max Planck", "Erwin Schrodinger"],
-        answer: "Werner Heisenberh"
+        answer: "Werner Heisenberg"
       },
       {
         question: "Which Shakespeare play features the characters Rosencrantz and Guildenstern?",
@@ -125,7 +132,7 @@
       },
       {
         question: "What is the unit of measurement for electric resistance?",
-        options: ["Volt", " Watt", "Ohm", "Ampere"],
+        options: ["Volt", "Watt", "Ohm", "Ampere"],
         answer: "Ohm"
       },
       {
@@ -140,7 +147,7 @@
       },
       {
         question: "In computing, what does the acronym 'FIFO' stand for?",
-        options: [" First-In-First-Open", "First-In-First-Out", "Fast Input Fast Output", "Fixed Instruction Fixed Output"],
+        options: ["First-In-First-Open", "First-In-First-Out", "Fast Input Fast Output", "Fixed Instruction Fixed Output"],
         answer: "First-In-First-Out"
       }
     ];
@@ -161,12 +168,17 @@
         btn.onclick = () => {
           if (opt === q.answer) {
             score++;
-            btn.style.backgroundColor = "#4ade80"; 
+            btn.style.backgroundColor = "#4ade80";
           } else {
-            btn.style.backgroundColor = "#f87171"; 
+            btn.style.backgroundColor = "#f87171";
+            const correctAnswerBtn = Array.from(document.querySelectorAll('.options button'))
+              .find(button => button.textContent === q.answer);
+            correctAnswerBtn.style.backgroundColor = "#4ade80"; 
+            const correctAnswerText = document.createElement('p');
+            correctAnswerText.textContent = `Correct answer: ${q.answer}`;
+            correctAnswerText.classList.add('correct-answer');
+            document.getElementById("correctAnswerMessage").appendChild(correctAnswerText);
           }
-
-          
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
         };
         optionsDiv.appendChild(btn);
@@ -177,6 +189,7 @@
       current++;
       if (current < questions.length) {
         showQuestion();
+        document.getElementById("correctAnswerMessage").innerHTML = ""; 
       } else {
         document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
         document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;

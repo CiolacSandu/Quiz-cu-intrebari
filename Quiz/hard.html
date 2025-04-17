@@ -78,6 +78,28 @@
       color: #111827;
       margin-top: 30px;
     }
+
+    #dashboardBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+      display: none; 
+    }
+
+    #dashboardBtn:hover {
+      background-color: #2563eb;
+    }
+
+    .correct-answer {
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -86,9 +108,11 @@
     <div class="question-box">
       <h2 id="question">Loading question...</h2>
       <div class="options" id="options"></div>
+      <p id="correctAnswer" class="correct-answer" style="display: none;"></p>
     </div>
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
+    <button id="dashboardBtn">Go to Dashboard</button>
   </div>
 
   <script>
@@ -110,7 +134,7 @@
       },
       {
         question: "What is the square root of 256",
-        options: [" 12", "20", "16", "18"],
+        options: ["12", "20", "16", "18"],
         answer: "16"
       },
       {
@@ -140,7 +164,7 @@
       },
       {
         question: "Which famous scientist developed the three laws of motion?",
-        options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", " Johannes Kepler"],
+        options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", "Johannes Kepler"],
         answer: "Isaac Newton"
       }
     ];
@@ -155,6 +179,8 @@
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
 
+      document.getElementById("correctAnswer").style.display = "none"; // Reset the correct answer display
+
       q.options.forEach(opt => {
         const btn = document.createElement("button");
         btn.textContent = opt;
@@ -164,9 +190,9 @@
             btn.style.backgroundColor = "#4ade80"; 
           } else {
             btn.style.backgroundColor = "#f87171"; 
+            document.getElementById("correctAnswer").style.display = "block";
+            document.getElementById("correctAnswer").textContent = `Correct Answer: ${q.answer}`;
           }
-
-          
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
         };
         optionsDiv.appendChild(btn);
@@ -180,13 +206,16 @@
       } else {
         document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
         document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
-        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none"; 
+        document.getElementById("dashboardBtn").style.display = "inline-block";
       }
+    });
+
+    document.getElementById("dashboardBtn").addEventListener("click", () => {
+      window.location.href = "dashboard.html"; 
     });
 
     showQuestion();
   </script>
 </body>
 </html>
-
-

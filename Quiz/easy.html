@@ -78,6 +78,23 @@
       color: #111827;
       margin-top: 30px;
     }
+
+    #backToDashboardBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #backToDashboardBtn:hover {
+      background-color: #2563eb;
+    }
   </style>
 </head>
 <body>
@@ -89,6 +106,7 @@
     </div>
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
+    <button id="backToDashboardBtn">Back to Dashboard</button>
   </div>
 
   <script>
@@ -134,7 +152,7 @@
         answer: "Round"
       },
       {
-        question: "How many continents does the Earth have?",
+        question: "How many continents does the Earth have (Europe and Asia are separated)?",
         options: ["5", "7", "8", "6"],
         answer: "7"
       },
@@ -181,12 +199,15 @@
         document.querySelector(".question-box").innerHTML = "<h2>Quiz Completed! 🎉</h2>";
         document.getElementById("score").textContent = `Your score: ${score} / ${questions.length}`;
         document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("backToDashboardBtn").style.display = "inline-block";  
       }
+    });
+
+    document.getElementById("backToDashboardBtn").addEventListener("click", () => {
+      window.location.href = "../Dashboard/dash.html";  
     });
 
     showQuestion();
   </script>
 </body>
 </html>
-
-
