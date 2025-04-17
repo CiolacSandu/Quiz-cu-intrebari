@@ -187,11 +187,18 @@
         btn.onclick = () => {
           if (opt === q.answer) {
             score++;
-            btn.style.backgroundColor = "#4ade80";
+            btn.style.backgroundColor = "#4ade80"; 
           } else {
-            btn.style.backgroundColor = "#f87171";
+            btn.style.backgroundColor = "#f87171"; 
             document.getElementById("correctAnswer").style.display = "block";
             document.getElementById("correctAnswer").textContent = `Correct Answer: ${q.answer}`;
+
+            
+            document.querySelectorAll('.options button').forEach(b => {
+              if (b.textContent === q.answer) {
+                b.style.backgroundColor = "#4ade80";
+              }
+            });
           }
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
         };

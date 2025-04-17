@@ -39,7 +39,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
     .options button {
@@ -56,6 +56,12 @@
     .options button:hover {
       background-color: #dbeafe;
       transform: scale(1.05);
+    }
+
+    #correctAnswerText {
+      font-size: 18px;
+      color: #dc2626;
+      margin-bottom: 20px;
     }
 
     #nextBtn {
@@ -103,6 +109,7 @@
     <div class="question-box">
       <h2 id="question">Loading question...</h2>
       <div class="options" id="options"></div>
+      <p id="correctAnswerText"></p>
     </div>
     <button id="nextBtn">Next</button>
     <div class="score" id="score"></div>
@@ -173,18 +180,22 @@
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
 
+      // Reset textul pentru răspunsul corect
+      document.getElementById("correctAnswerText").textContent = "";
+
       q.options.forEach(opt => {
         const btn = document.createElement("button");
         btn.textContent = opt;
         btn.onclick = () => {
           if (opt === q.answer) {
             score++;
-            btn.style.backgroundColor = "#4ade80"; 
+            btn.style.backgroundColor = "#4ade80"; // verde
           } else {
-            btn.style.backgroundColor = "#f87171"; 
+            btn.style.backgroundColor = "#f87171"; // roșu
+            document.getElementById("correctAnswerText").textContent = `Răspuns corect: ${q.answer}`;
           }
 
-          
+          // Dezactivăm toate butoanele după alegere
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
         };
         optionsDiv.appendChild(btn);
