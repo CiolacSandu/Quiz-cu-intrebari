@@ -190,12 +190,12 @@
           } else {
             btn.style.backgroundColor = "#f87171";
             
-            // Marchez răspunsul corect
+            
             const correctAnswerBtn = Array.from(document.querySelectorAll('.options button'))
               .find(button => button.textContent === q.answer);
             correctAnswerBtn.style.backgroundColor = "#4ade80";
 
-            // Arăt textul răspunsului corect o singură dată
+            
             const messageBox = document.getElementById("correctAnswerMessage");
             if (messageBox.childElementCount === 0) {
               const correctAnswerText = document.createElement('p');
@@ -205,7 +205,7 @@
             }
           }
 
-          // Dezactivez toate butoanele după selectare
+          
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
         };
         optionsDiv.appendChild(btn);
