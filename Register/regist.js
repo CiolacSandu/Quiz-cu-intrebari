@@ -1,63 +1,57 @@
-const form = document.querySelector("form");
-const passwordInput = document.getElementById("Password");
-const confirmPasswordInput = document.getElementById("confirm-password");
-const emailInput = document.querySelector('input[type="email"]');
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
+    
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
 
-document.querySelectorAll(".input-box").forEach((box) => {
-    const input = box.querySelector("input");
-    if (input.type === "password") {
-        const toggleBtn = document.createElement("button");
-        toggleBtn.type = "button";
-        toggleBtn.className = "toggle-password";
-        toggleBtn.innerHTML = `<i class='bx bx-hide'></i>`;
-        box.appendChild(toggleBtn);
-
-        toggleBtn.addEventListener("click", () => {
-            if (input.type === "password") {
-                input.type = "text";
-                toggleBtn.innerHTML = `<i class='bx bx-show'></i>`;
-            } else {
-                input.type = "password";
-                toggleBtn.innerHTML = `<i class='bx bx-hide'></i>`;
-            }
-        });
+    
+    if (!username || !email || !password || !confirmPassword) {
+        alert("Toate câmpurile sunt obligatorii!");
+        return;
     }
+
+    
+    if (password.length < 6) {
+        alert("Parola trebuie să aibă cel puțin 6 caractere.");
+        return;
+    }
+
+    
+    if (password !== confirmPassword) {
+        alert("Parolele nu se potrivesc.");
+        return;
+    }
+
+    
+    const emailPattern = /^(.*)@(gmail\.com|email\.com)$/;
+    if (!emailPattern.test(email)) {
+        alert("Te rog introduce un email valid care să fie @gmail.com sau @email.com.");
+        return;
+    }
+
+    
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+   
+    if (users.some(user => user.username === username)) {
+        alert("Acest username este deja utilizat.");
+        return;
+    }
+
+    
+    const newUser = { username, email, password };
+    users.push(newUser);
+
+    
+    localStorage.setItem('users', JSON.stringify(users));
+
+    
+    alert("Înregistrare reușită! Te poți autentifica acum.");
+
+    
+    window.location.href = "../Login/login.html"; 
 });
 
-
-function isValidPassword(password) {
-    const minLength = password.length >= 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const noSymbols = /^[A-Za-z0-9]*$/.test(password); 
-
-    return minLength && hasUpperCase && hasNumber && noSymbols;
-}
-
-
-function isValidEmail(email) {
-    return email.endsWith("@gmail.com");
-}
-
-
-form.addEventListener("submit", (e) => {
-    const pass = passwordInput.value;
-    const confirm = confirmPasswordInput.value;
-    const email = emailInput.value;
-
-    if (!isValidEmail(email)) {
-        alert("Emailul trebuie să fie de forma utilizator@gmail.com");
-        e.preventDefault();
-    } else if (!isValidPassword(pass)) {
-        alert("Parola trebuie să aibă 8 caractere, o litera mare si o cifra, fără simboluri.");
-        e.preventDefault();
-    } else if (pass !== confirm) {
-        alert("Parolele nu coincid!");
-        e.preventDefault();
-    } else {
-        e.preventDefault(); 
-        alert("Înregistrare reușită!");
-        form.reset();
-    }
-});
