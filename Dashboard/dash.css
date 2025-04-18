@@ -1,133 +1,134 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #E5F3FE;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-x: hidden; 
+  font-family: 'Arial', sans-serif;
+  background-color: #E5F3FE;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden; /* Elimină scroll-ul orizontal */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#navbar-placeholder {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.container {
+  text-align: center;
+  padding: 80px 20px;
+  margin-top: 80px;
+  color: #333;
+  font-weight: bold;
+  background-color: #A7C6ED;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 160px);
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.title {
+  font-size: 48px;
+  color: #1E3A8A;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-out;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #4B5563;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.difficulty-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.difficulty-btn {
+  padding: 20px 40px;
+  font-size: 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #3B82F6;
+  color: white;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.difficulty-btn:hover {
+  background-color: #2563EB;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.difficulty-btn:active {
+  transform: translateY(2px);
+}
+
+footer {
+  background-color: #1E3A8A;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+footer::after {
+  content: "Sarcina practică a fost realizata de elevul grupei PTPP-241 din Colegiul Universității Tehnice a Moldovei";
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #B0C4DE;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  #navbar-placeholder {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .container {
-    text-align: center;
-    padding: 80px 20px;
-    margin-top: 80px;
-    color: #333;
-    font-weight: bold;
-    background-color: #A7C6ED; 
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: calc(100vh - 160px); 
-    overflow: hidden; 
-  }
-  
-  .title {
-    font-size: 48px;
-    color: #1E3A8A; 
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-out;
-  }
-  
-  .subtitle {
-    font-size: 24px;
-    color: #4B5563; 
-    margin-bottom: 40px;
-    font-weight: 500;
-  }
-  
+}
+
+@media (max-width: 768px) {
   .difficulty-options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .difficulty-btn {
-    padding: 20px 40px;
-    font-size: 22px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    background-color: #3B82F6; 
-    color: white;
-    transition: all 0.4s ease-in-out;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+    width: 90%;
+    max-width: 300px;
+    font-size: 20px;
   }
-  
-  .difficulty-btn:hover {
-    background-color: #2563EB; 
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  .title {
+    font-size: 36px;
   }
-  
-  .difficulty-btn:active {
-    transform: translateY(2px);
+
+  .subtitle {
+    font-size: 20px;
   }
-  
-  footer {
-    background-color: #1E3A8A; 
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 400;
-  }
-  
-  footer::after {
-    content: "Sarcina practică a fost realizata de elevul grupei PTPP-241 din Colegiul Universității Tehnice a Moldovei";
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #B0C4DE; 
-    text-align: center;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .difficulty-options {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .difficulty-btn {
-      width: 90%;
-      max-width: 300px;
-      font-size: 20px;
-    }
-  
-    .title {
-      font-size: 36px;
-    }
-  
-    .subtitle {
-      font-size: 20px;
-    }
-  }
-  
+}
