@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Quiz - Hard</title>
+  <title>Simple Quiz - Math</title>
   <link rel="stylesheet" href="../Footer/footer.css">
   <link rel="stylesheet" href="../Navbar/nav.css">
   <style>
@@ -109,7 +109,7 @@
   </div>
 
   <div class="quiz-container">
-    <h1 class="quiz-title">Simple Quiz - Very Hard</h1>
+    <h1 class="quiz-title">Simple Quiz - Math</h1>
     <div class="question-box">
       <h2 id="question">Loading question...</h2>
       <div class="options" id="options"></div>
@@ -130,55 +130,55 @@
 
   <script>
     const questions = [
-    {
-        question: "What is the capital of Australia?",
-        options: ["Sydney", "Melbourne", "Brisbane", "Canberra"],
-        answer: "Canberra"
+      {
+        question: "What is 15 + 10?",
+        options: ["25", "24", "26", "20"],
+        answer: "25"
       },
       {
-        question: "What is the chemical formula of sulfuric acid?",
-        options: ["HCl", "H2SO4", "H2O", "NaCl"],
-        answer: "H2SO4"
+        question: "What is 7 x 6?",
+        options: ["42", "36", "48", "30"],
+        answer: "42"
       },
       {
-        question: "Which scientist discovered the theory of relativity?",
-        options: ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Marie Curie"],
-        answer: "Albert Einstein"
+        question: "What is 16 ÷ 4?",
+        options: ["5", "6", "4", "3"],
+        answer: "4"
       },
       {
-        question: "Who was the first woman to win a Nobel Prize?",
-        options: ["Marie Curie", "Rosalind Franklin", "Ada Lovelace", "Jane Goodall"],
-        answer: "Marie Curie"
+        question: "What is 25 - 9?",
+        options: ["14", "15", "16", "17"],
+        answer: "16"
       },
       {
-        question: "What is the longest river in the world?",
-        options: ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
-        answer: "Amazon River"
+        question: "What is 9 x 9?",
+        options: ["81", "72", "90", "100"],
+        answer: "81"
       },
       {
-        question: "What is the smallest country in the world?",
-        options: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
-        answer: "Vatican City"
+        question: "What is 36 ÷ 6?",
+        options: ["6", "5", "7", "8"],
+        answer: "6"
       },
       {
-        question: "Which element has the chemical symbol 'Au'?",
-        options: ["Silver", "Gold", "Uranium", "Platinum"],
-        answer: "Gold"
+        question: "What is 12 + 8?",
+        options: ["18", "20", "22", "16"],
+        answer: "20"
       },
       {
-        question: "What is the capital city of Canada?",
-        options: ["Ottawa", "Toronto", "Vancouver", "Montreal"],
-        answer: "Ottawa"
+        question: "What is 14 x 3?",
+        options: ["42", "40", "44", "46"],
+        answer: "42"
       },
       {
-        question: "In what year did World War II end?",
-        options: ["1945", "1944", "1939", "1950"],
-        answer: "1945"
+        question: "What is 54 ÷ 9?",
+        options: ["5", "6", "7", "8"],
+        answer: "6"
       },
       {
-        question: "Which country is home to the famous pyramids of Giza?",
-        options: ["Mexico", "Italy", "Egypt", "China"],
-        answer: "Egypt"
+        question: "What is 18 + 23?",
+        options: ["41", "42", "43", "44"],
+        answer: "41"
       }
     ];
 
@@ -267,7 +267,7 @@
     });
 
     function showFinalScore() {
-      document.querySelector(".question-box").innerHTML = `
+      document.querySelector(".question-box").innerHTML = ` 
         <div style="padding: 30px; border: 2px dashed #3b82f6; border-radius: 20px; background-color: #eff6ff; animation: fadeIn 1s ease-in-out;">
           <h2 style="font-size: 32px; color: #1e3a8a;">Quiz Completed! 🎉</h2>
           <p style="font-size: 24px; margin-top: 15px;">Your score: <strong>${score} / ${questions.length}</strong></p>
