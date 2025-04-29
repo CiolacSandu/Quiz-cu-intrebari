@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../Footer/footer.css">
   <link rel="stylesheet" href="../Navbar/nav.css">
   <style>
-    
+
     html, body {
       margin: 0;
       padding: 0;
@@ -103,7 +103,7 @@
 </head>
 <body>
 
-  
+
   <div class="navbar">
     <button id="logoutBtn">🔙 Log Out</button>
   </div>
@@ -129,66 +129,66 @@
   <script src="../Navbar/nav.js"></script>
 
   <script>
-    const questions = [
-    {
-        question: "What is the capital city of France?",
-        options: ["Berlin", "Madrid", "Paris", "Rome"],
-        answer: "Paris"
+    const hardQuestions = [
+      {
+        question: "Which desert is the largest in the world by area?",
+        options: ["Sahara", "Gobi", "Arctic", "Antarctic"],
+        answer: "Antarctic"
       },
       {
-        question: "Which river is the longest in the world?",
-        options: ["Amazon River", "Nile River", "Yangtze River", "Mississippi River"],
-        answer: "Nile River"
+        question: "What is the smallest country in the world by area?",
+        options: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"],
+        answer: "Vatican City"
       },
       {
-        question: "Which country is known as the Land of the Rising Sun?",
-        options: ["China", "Japan", "South Korea", "Vietnam"],
-        answer: "Japan"
+        question: "Which mountain range separates Europe from Asia?",
+        options: ["Alps", "Carpathians", "Ural Mountains", "Rocky Mountains"],
+        answer: "Ural Mountains"
       },
       {
-        question: "Which continent is the Sahara Desert located on?",
-        options: ["Asia", "Africa", "Australia", "South America"],
-        answer: "Africa"
+        question: "What is the deepest ocean trench in the world?",
+        options: ["Tonga Trench", "Kuril–Kamchatka Trench", "Mariana Trench", "Philippine Trench"],
+        answer: "Mariana Trench"
       },
       {
-        question: "What is the largest island in the world?",
-        options: ["Greenland", "Australia", "New Guinea", "Borneo"],
-        answer: "Greenland"
+        question: "Which country has the most official languages?",
+        options: ["India", "South Africa", "Switzerland", "Bolivia"],
+        answer: "Bolivia"
       },
       {
-        question: "Which country has the most population in the world?",
-        options: ["India", "USA", "China", "Russia"],
-        answer: "China"
+        question: "Which is the highest capital city in the world?",
+        options: ["La Paz", "Quito", "Thimphu", "Kathmandu"],
+        answer: "La Paz"
       },
       {
-        question: "What is the capital city of Canada?",
-        options: ["Vancouver", "Montreal", "Ottawa", "Toronto"],
-        answer: "Ottawa"
+        question: "Which country has the most volcanoes?",
+        options: ["Indonesia", "Japan", "USA", "Chile"],
+        answer: "Indonesia"
       },
       {
-        question: "Which mountain is the highest in the world?",
-        options: ["Mount Everest", "K2", "Kangchenjunga", "Makalu"],
-        answer: "Mount Everest"
+        question: "Which continent has no permanent population?",
+        options: ["Antarctica", "Australia", "Asia", "Europe"],
+        answer: "Antarctica"
       },
       {
-        question: "Which ocean is the largest?",
-        options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
-        answer: "Pacific Ocean"
+        question: "Which river flows through the most countries?",
+        options: ["Amazon", "Danube", "Nile", "Yangtze"],
+        answer: "Danube"
       },
       {
-        question: "What is the largest country by land area?",
-        options: ["Canada", "United States", "China", "Russia"],
-        answer: "Russia"
+        question: "Which lake is the deepest in the world?",
+        options: ["Lake Superior", "Lake Baikal", "Caspian Sea", "Lake Tanganyika"],
+        answer: "Lake Baikal"
       }
     ];
 
     let current = 0;
     let score = 0;
-    const answered = Array(questions.length).fill(false);
-    const selectedAnswers = Array(questions.length).fill(null);
+    const answered = Array(hardQuestions.length).fill(false);
+    const selectedAnswers = Array(hardQuestions.length).fill(null);
 
     function showQuestion() {
-      const q = questions[current];
+      const q = hardQuestions[current];
       document.getElementById("question").textContent = q.question;
 
       const optionsDiv = document.getElementById("options");
@@ -247,7 +247,7 @@
     }
 
     document.getElementById("nextBtn").addEventListener("click", () => {
-      if (current < questions.length - 1) {
+      if (current < hardQuestions.length - 1) {
         current++;
         showQuestion();
       } else {
@@ -270,7 +270,7 @@
       document.querySelector(".question-box").innerHTML = `
         <div style="padding: 30px; border: 2px dashed #3b82f6; border-radius: 20px; background-color: #eff6ff; animation: fadeIn 1s ease-in-out;">
           <h2 style="font-size: 32px; color: #1e3a8a;">Quiz Completed! 🎉</h2>
-          <p style="font-size: 24px; margin-top: 15px;">Your score: <strong>${score} / ${questions.length}</strong></p>
+          <p style="font-size: 24px; margin-top: 15px;">Your score: <strong>${score} / ${hardQuestions.length}</strong></p>
           ${score >= 8 ? "<p style='font-size: 20px; color: green; margin-top: 10px;'>Excellent work! 🌟</p>" : score >= 5 ? "<p style='font-size: 20px; color: orange; margin-top: 10px;'>Good job! Keep practicing!</p>" : "<p style='font-size: 20px; color: red; margin-top: 10px;'>Don't give up, try again! 💪</p>"}
           <img src="https://cdn-icons-png.flaticon.com/512/616/616490.png" alt="Trophy" style="width: 100px; margin-top: 20px;">
         </div>
