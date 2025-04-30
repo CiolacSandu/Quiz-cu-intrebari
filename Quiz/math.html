@@ -87,12 +87,6 @@
       margin-top: 30px;
     }
 
-    .correct-answer {
-      color: #4ade80;
-      font-size: 18px;
-      margin-top: 20px;
-    }
-
     #backToDashboardBtn {
       display: none;
     }
@@ -120,7 +114,6 @@
       <button id="nextBtn">Next</button>
     </div>
     <div class="score" id="score"></div>
-    <div id="correctAnswerMessage"></div>
     <button id="backToDashboardBtn">Back to Dashboard</button>
   </div>
 
@@ -130,57 +123,57 @@
 
   <script>
     const questions = [
-  {
-    question: "Care este valoarea lui π cu 2 zecimale?",
-    options: ["3.14", "3.141", "3.12", "3.13"],
-    answer: "3.14"
-  },
-  {
-    question: "Care este soluția ecuației x + 7 = 12?",
-    options: ["x = 5", "x = 4", "x = 7", "x = 8"],
-    answer: "x = 5"
-  },
-  {
-    question: "Rezultatul lui 15 + 10 este?",
-    options: ["25", "20", "30", "35"],
-    answer: "25"
-  },
-  {
-    question: "Ce valoare are 3 * 4 + 6?",
-    options: ["18", "20", "22", "24"],
-    answer: "18"
-  },
-  {
-    question: "Care este valoarea lui 8 * (2 + 4)?",
-    options: ["48", "40", "32", "24"],
-    answer: "48"
-  },
-  {
-    question: "Rezolvă ecuația 3x - 5 = 10",
-    options: ["x = 5", "x = 4", "x = 3", "x = 2"],
-    answer: "x = 5"
-  },
-  {
-    question: "Care este aria unui cerc cu raza 7? (Folosește π ≈ 3.14)",
-    options: ["153.94", "143.96", "154.96", "157.14"],
-    answer: "153.94"
-  },
-  {
-    question: "Care este perimetrul unui pătrat cu latura de 6?",
-    options: ["24", "36", "30", "12"],
-    answer: "24"
-  },
-  {
-    question: "Ce reprezintă expresia (a + b)^2?",
-    options: ["a^2 + 2ab + b^2", "a^2 - 2ab + b^2", "a^2 + b^2", "(a + b)"],
-    answer: "a^2 + 2ab + b^2"
-  },
-  {
-    question: "Care este rezultatul lui 120 ÷ 6?",
-    options: ["18", "20", "22", "24"],
-    answer: "20"
-  }
-];
+      {
+        question: "Care este valoarea lui π cu 2 zecimale?",
+        options: ["3.14", "3.141", "3.12", "3.13"],
+        answer: "3.14"
+      },
+      {
+        question: "Care este soluția ecuației x + 7 = 12?",
+        options: ["x = 5", "x = 4", "x = 7", "x = 8"],
+        answer: "x = 5"
+      },
+      {
+        question: "Rezultatul lui 15 + 10 este?",
+        options: ["25", "20", "30", "35"],
+        answer: "25"
+      },
+      {
+        question: "Ce valoare are 3 * 4 + 6?",
+        options: ["18", "20", "22", "24"],
+        answer: "18"
+      },
+      {
+        question: "Care este valoarea lui 8 * (2 + 4)?",
+        options: ["48", "40", "32", "24"],
+        answer: "48"
+      },
+      {
+        question: "Rezolvă ecuația 3x - 5 = 10",
+        options: ["x = 5", "x = 4", "x = 3", "x = 2"],
+        answer: "x = 5"
+      },
+      {
+        question: "Care este aria unui cerc cu raza 7? (Folosește π ≈ 3.14)",
+        options: ["153.94", "143.96", "154.96", "157.14"],
+        answer: "153.94"
+      },
+      {
+        question: "Care este perimetrul unui pătrat cu latura de 6?",
+        options: ["24", "36", "30", "12"],
+        answer: "24"
+      },
+      {
+        question: "Ce reprezintă expresia (a + b)^2?",
+        options: ["a^2 + 2ab + b^2", "a^2 - 2ab + b^2", "a^2 + b^2", "(a + b)"],
+        answer: "a^2 + 2ab + b^2"
+      },
+      {
+        question: "Care este rezultatul lui 120 ÷ 6?",
+        options: ["18", "20", "22", "24"],
+        answer: "20"
+      }
+    ];
 
     let current = 0;
     let score = 0;
@@ -193,7 +186,6 @@
 
       const optionsDiv = document.getElementById("options");
       optionsDiv.innerHTML = "";
-      document.getElementById("correctAnswerMessage").innerHTML = "";
 
       q.options.forEach(opt => {
         const btn = document.createElement("button");
@@ -206,10 +198,6 @@
               btn.style.backgroundColor = "#4ade80";
             } else {
               btn.style.backgroundColor = "#f87171";
-              const correctText = document.createElement('p');
-              correctText.textContent = `Correct answer: ${q.answer}`;
-              correctText.classList.add('correct-answer');
-              document.getElementById("correctAnswerMessage").appendChild(correctText);
             }
           } else if (opt === q.answer) {
             btn.style.backgroundColor = "#4ade80";
@@ -230,11 +218,6 @@
             const correctBtn = Array.from(document.querySelectorAll('.options button'))
               .find(b => b.textContent === q.answer);
             correctBtn.style.backgroundColor = "#4ade80";
-
-            const correctText = document.createElement('p');
-            correctText.textContent = `Correct answer: ${q.answer}`;
-            correctText.classList.add('correct-answer');
-            document.getElementById("correctAnswerMessage").appendChild(correctText);
           }
 
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);

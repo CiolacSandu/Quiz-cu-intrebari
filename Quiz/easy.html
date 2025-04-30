@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../Footer/footer.css">
   <link rel="stylesheet" href="../Navbar/nav.css">
   <style>
-    
     html, body {
       margin: 0;
       padding: 0;
@@ -103,7 +102,6 @@
 </head>
 <body>
 
-  
   <div class="navbar">
     <button id="logoutBtn">🔙 Log Out</button>
   </div>
@@ -123,14 +121,13 @@
     <button id="backToDashboardBtn">Back to Dashboard</button>
   </div>
 
-  
   <div style="height: 400px;"></div>
   <script src="../Footer/footer.js"></script>
   <script src="../Navbar/nav.js"></script>
 
   <script>
     const questions = [
-    {
+      {
         question: "What is the capital of Romania?",
         options: ["Cluj-Napoca", "Bucharest", "Timisoara", "Iasi"],
         answer: "Bucharest"
@@ -206,10 +203,6 @@
               btn.style.backgroundColor = "#4ade80";
             } else {
               btn.style.backgroundColor = "#f87171";
-              const correctText = document.createElement('p');
-              correctText.textContent = `Correct answer: ${q.answer}`;
-              correctText.classList.add('correct-answer');
-              document.getElementById("correctAnswerMessage").appendChild(correctText);
             }
           } else if (opt === q.answer) {
             btn.style.backgroundColor = "#4ade80";
@@ -230,14 +223,12 @@
             const correctBtn = Array.from(document.querySelectorAll('.options button'))
               .find(b => b.textContent === q.answer);
             correctBtn.style.backgroundColor = "#4ade80";
-
-            const correctText = document.createElement('p');
-            correctText.textContent = `Correct answer: ${q.answer}`;
-            correctText.classList.add('correct-answer');
-            document.getElementById("correctAnswerMessage").appendChild(correctText);
           }
 
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
+          if (current === questions.length - 1) {
+            showFinalScore();
+          }
         };
 
         optionsDiv.appendChild(btn);
@@ -250,8 +241,6 @@
       if (current < questions.length - 1) {
         current++;
         showQuestion();
-      } else {
-        showFinalScore();
       }
     });
 
@@ -267,7 +256,8 @@
     });
 
     function showFinalScore() {
-      document.querySelector(".question-box").innerHTML = `
+      const questionBox = document.querySelector(".question-box");
+      questionBox.innerHTML = `
         <div style="padding: 30px; border: 2px dashed #3b82f6; border-radius: 20px; background-color: #eff6ff; animation: fadeIn 1s ease-in-out;">
           <h2 style="font-size: 32px; color: #1e3a8a;">Quiz Completed! 🎉</h2>
           <p style="font-size: 24px; margin-top: 15px;">Your score: <strong>${score} / ${questions.length}</strong></p>

@@ -206,14 +206,13 @@
               btn.style.backgroundColor = "#4ade80";
             } else {
               btn.style.backgroundColor = "#f87171";
-              const correctText = document.createElement('p');
-              correctText.textContent = `Correct answer: ${q.answer}`;
-              correctText.classList.add('correct-answer');
-              document.getElementById("correctAnswerMessage").appendChild(correctText);
+              if (opt !== q.answer) {
+                const correctBtn = Array.from(document.querySelectorAll('.options button'))
+                  .find(b => b.textContent === q.answer);
+                correctBtn.style.backgroundColor = "#4ade80";
+              }
             }
-          } else if (opt === q.answer) {
-            btn.style.backgroundColor = "#4ade80";
-          }
+          } 
         }
 
         btn.onclick = () => {
@@ -230,11 +229,6 @@
             const correctBtn = Array.from(document.querySelectorAll('.options button'))
               .find(b => b.textContent === q.answer);
             correctBtn.style.backgroundColor = "#4ade80";
-
-            const correctText = document.createElement('p');
-            correctText.textContent = `Correct answer: ${q.answer}`;
-            correctText.classList.add('correct-answer');
-            document.getElementById("correctAnswerMessage").appendChild(correctText);
           }
 
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);

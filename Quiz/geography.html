@@ -103,7 +103,6 @@
 </head>
 <body>
 
-
   <div class="navbar">
     <button id="logoutBtn">🔙 Log Out</button>
   </div>
@@ -123,7 +122,6 @@
     <button id="backToDashboardBtn">Back to Dashboard</button>
   </div>
 
-  
   <div style="height: 400px;"></div>
   <script src="../Footer/footer.js"></script>
   <script src="../Navbar/nav.js"></script>
@@ -230,11 +228,6 @@
             const correctBtn = Array.from(document.querySelectorAll('.options button'))
               .find(b => b.textContent === q.answer);
             correctBtn.style.backgroundColor = "#4ade80";
-
-            const correctText = document.createElement('p');
-            correctText.textContent = `Correct answer: ${q.answer}`;
-            correctText.classList.add('correct-answer');
-            document.getElementById("correctAnswerMessage").appendChild(correctText);
           }
 
           document.querySelectorAll('.options button').forEach(b => b.disabled = true);
